@@ -1,0 +1,43 @@
+.modal-container {
+  margin-top: 8vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form {
+  max-width: 50vw;
+  margin: auto 20vw;
+  padding: 20px;
+}
+
+.form lable {
+  display: block;
+  margin: 30px auto;
+}
+
+.form span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form input {
+  padding: 8px 6px;
+  font-size: 1em;
+  width: 80%;
+  border: 2px solid #cccccc;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+.form textarea {
+  padding: 8px 6px;
+  font-size: 1em;
+  width: 80%;
+  border: 2px solid #cccccc;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+.profile-btn {
+  position: relative;
+  left: 85%;
+}

@@ -1,0 +1,48 @@
+{
+    "articles": [
+    {
+      "id": "1",
+      "title": "ABOUT US",
+      "content": "TAKE A FREIND is an organization dedicated to building and maintaining animal shelters, rescuing animals, and enhancing or establishing programs and services that benefit animals and serve            and educate the public."
+    },
+    {
+      "id": "2",
+      "title": "Foster Families",
+      "content": "Our organization is using to use foster families as the optimal intermediate solution for pets,rather than shelters. Due to the special work of the organization, while waiting to be rehomed, our pets enjoy living in a home environment where the mortality rate is close to zero. Our years of experience have proved themselves to be more than successful. In addition to the benefits to the pet (better physical and mental health) the absence of shelters also encourages the public to be more involved in the animals' treatments and causes them to feel more responsible for their fate."
+    },
+    {
+      "id": "3",
+      "title": "Rescuing Moms and Puppies",
+      "content": "Every day we receive reports of dogs and puppies, or motherless puppies, found abandoned and in distress - on military bases, in rural towns, in open fields up North, in the Central region, in the South, and unfortunately everywhere. It's an epidemic, and the Ministry of Agriculture is negligent and will provide the necessary resources to deal with this problem. It falls upon the animal rescue organization and on-the-ground volunteers to rescue and rehabilitate them. We at SOS Pets decided to change this brutal reality, and every months we take in additional dogs and large numbers of puppies. In the past 6 months alone we have received 35 mothers and 156 puppies who have arrived at our doorstep from all over the country, and we keep going. However, without the public's assistance, we will not be able to help this many dogs in need.Please open your hearts and help us save them."
+    },
+    {
+      "id": "4",
+      "title": "More Things",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },{
+      "id": "5",
+      "title": "Even More Things",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "userFirstName": "John",
+      "userLastName": "Smith",
+      "email": "john@smith.com",
+      "password":"1234",
+      "phone":"0500000000",
+      "about":"I like to explore"
+    },
+    {
+      "id": "2",
+      "userFirstName": "Napoleon",
+      "userLastName": "Bonaparte ",
+      "email": "napoleon@bonaparte .com",
+      "password":"5678",
+      "phone":"0500000000",
+      "about":"I like to win"
+    }
+  ]
+}

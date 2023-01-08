@@ -1,0 +1,50 @@
+.navbar {
+  z-index: 5;
+  position: fixed;
+  background-color: white;
+  width: 100vw;
+  height: 15vh;
+  border-bottom: 5px solid #b25f7528;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.navbar ul {
+  position: relative;
+  margin-top: 10vh;
+  left: 8vw;
+  list-style: none;
+  font-weight: 500;
+  font-size: 23px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  justify-items: baseline;
+}
+
+.navbar li {
+  padding-left: 2vw;
+  margin-left: 2vw;
+}
+.navbar a {
+  color: #5f2564;
+  text-decoration: none;
+}
+
+navbar a :active {
+  color: #b25f75;
+}
+.navbar button {
+  border: none;
+}
+
+.logo-img {
+  z-index: 1;
+  position: fixed;
+  top: 10.5vh;
+  left: 1vw;
+  width: 15vw;
+  height: 8vh;
+  cursor: pointer;
+}
