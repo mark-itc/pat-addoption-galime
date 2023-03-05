@@ -1,0 +1,17 @@
+.pet_result_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.pet_container {
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+.pet_type {
+}
+.pet_name {
+}
+.pet_status {
+}

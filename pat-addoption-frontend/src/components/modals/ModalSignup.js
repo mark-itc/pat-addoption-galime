@@ -1,35 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styles from "./Modal.module.css";
-import useFetch from "../../hooks/useFetch";
+import axios from "axios";
+import { DataContext } from "../../context/DataContext";
 
-export default function ModalSingup({ setToEnter, toEnter }) {
-  const [userFirstName, setUserFirstName] = useState("");
-  const [userLastName, setUserLastName] = useState("");
+export default function ModalSignup({ setToEnter, toEnter }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const { isLogUser, setIsLogUser } = useContext(DataContext);
 
-const {postData, data, error} = useFetch("http://localhost:3000/users", "POST")
+  useEffect(() => {
+    setIsLogUser(isLogUser);
+  }, [isLogUser]);
+
+  function postData(data) {
+    axios
+      .post("http://localhost:3010/user/signup", data)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status === 200) {
+          setToEnter({ login: true, signup: false });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function sumbitHandler(e) {
     e.preventDefault();
     const user = {
-      userFirstName,
-      userLastName,
       email,
+      firstName,
+      lastName,
       password,
+      confirmPassword,
+      isAdmin: false,
       phone,
     };
-    setToEnter({ login: false, singup: false });
-    postData (user);
+
+    setToEnter({ login: false, signup: false });
+    postData(user);
   }
 
   return (
     <div className={styles["modal-container"]}>
       <button
         className={styles["close-modal-btn"]}
-        onClick={() => setToEnter({ login: false, singup: false })}
+        onClick={() => setToEnter({ login: false, signup: false })}
       >
         X
       </button>
@@ -42,7 +63,7 @@ const {postData, data, error} = useFetch("http://localhost:3000/users", "POST")
             placeholder="First Name"
             required
             onChange={(e) => {
-              setUserFirstName(e.target.value);
+              setFirstName(e.target.value);
             }}
           ></input>
           <input
@@ -50,7 +71,7 @@ const {postData, data, error} = useFetch("http://localhost:3000/users", "POST")
             placeholder="Last Name"
             required
             onChange={(e) => {
-              setUserLastName(e.target.value);
+              setLastName(e.target.value);
             }}
           ></input>
         </label>
@@ -80,10 +101,10 @@ const {postData, data, error} = useFetch("http://localhost:3000/users", "POST")
             type="password"
             required
             onChange={(e) => {
-              setRepeatPassword(e.target.value);
+              setConfirmPassword(e.target.value);
             }}
           ></input>
-          {!(repeatPassword === password) && <p> Passwords don't match</p>}
+          {!(confirmPassword === password) && <p> Passwords don't match</p>}
         </label>
         <label>
           <span> Phone Number:</span>
@@ -97,11 +118,11 @@ const {postData, data, error} = useFetch("http://localhost:3000/users", "POST")
             }}
           ></input>
         </label>
-        <button>Singup</button>
+        <button>Signup</button>
       </form>
       <div className={styles["switch-path"]}>
         <span>Have an account already?</span>
-        <button onClick={() => setToEnter({ login: true, singup: false })}>
+        <button onClick={() => setToEnter({ login: true, signup: false })}>
           Login
         </button>
       </div>

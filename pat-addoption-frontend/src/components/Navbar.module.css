@@ -36,7 +36,10 @@ navbar a :active {
   color: #b25f75;
 }
 .navbar button {
-  border: none;
+  /* border: 1px solid black; */
+  /* position: absolute; */
+  top: -40%;
+  left: 60%;
 }
 
 .logo-img {

@@ -1,34 +1,40 @@
-import React, { useState } from "react";
-import ModalLogin from "../../../components/modals/ModalLogin";
-import ModalSingup from "../../../components/modals/ModalSingup";
+import React, { useEffect, useContext } from "react";
+import { DataContext } from "../../../context/DataContext";
 import "./HomeLoggedOut.css";
-import useFetch from "../../../hooks/useFetch";
 
 function HomeLoggedOut(props) {
-  const { data, isPanding, error } = useFetch("http://localhost:3000/articles");
-  console.log("data", data);
-  console.log("isPanding", isPanding);
-  console.log("error", error);
+  const {
+    userAuth,
+    setUserAuth,
+    isLogUser,
+    setIsLogUser,
+    toEnter,
+    setToEnter,
+  } = useContext(DataContext);
 
-  const [toEnter, setToEnter] = useState({ login: false, singup: false });
+  useEffect(() => {
+    setIsLogUser(isLogUser);
+    setToEnter(toEnter);
+    console.log("to enter fron loogedout", toEnter);
+  }, [isLogUser, toEnter]);
+
   console.log("toEnter", toEnter);
 
   return (
     <div className="home-loggedout">
       <div className="header-and-btn">
-      <header className="headline-hompage">Welcom to TAKE A FREIND</header>
+        <header className="headline-hompage">Welcom to TAKE A FREIND</header>
 
-         {!toEnter.login && !toEnter.singup && (
-        <div className="choose-btn">
-          <button onClick={() => setToEnter({ login: true, singup: false })}>
-            Login
-          </button>
-          <button onClick={() => setToEnter({ login: false, singup: true })}>
-            Singup
-          </button>
-          <button>Search for a pet</button>
-        </div>
-      )}
+        {!isLogUser && (
+          <div className="choose-btn">
+            <button onClick={() => setToEnter({ login: true, signup: false })}>
+              Login
+            </button>
+            <button onClick={() => setToEnter({ login: false, signup: true })}>
+              Signup
+            </button>
+          </div>
+        )}
       </div>
       <div className="articals-container">
         <div className="content-container">
@@ -38,29 +44,8 @@ function HomeLoggedOut(props) {
             for a loving home.
           </p>
         </div>
-        <div className="project-container">
-          <h2>Take a glimpse to what we do</h2>
-          {error && <p>{error}</p>}
-          {isPanding && <p>Loading...</p>}
-          {data &&
-            data.map((articles) => <div key={articles.id}>
-            <h3>{articles.title}</h3>
-            <p>{articles.content}</p>
-            </div>)}
-        </div>
+        <div className="project-container"></div>
       </div>
-
-   
-      {toEnter.login && (
-        <div>
-          <ModalLogin setToEnter={setToEnter} toEnter={toEnter} />
-        </div>
-      )}
-      {toEnter.singup && (
-        <div>
-          <ModalSingup setToEnter={setToEnter} toEnter={toEnter} />
-        </div>
-      )}
     </div>
   );
 }
