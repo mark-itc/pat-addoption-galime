@@ -163,7 +163,10 @@ export default function Admin() {
         <button onClick={(e) => setGetUser(true)}>Get User</button>
         <button onClick={getAllUsers}>Get All Users</button>
       </div>
-      {isUsersShow && <AllUsersResult data={usertData} />}
+      {isUsersShow &&
+        !petEditing.delete &&
+        !petEditing.add &&
+        !petEditing.edit && <AllUsersResult data={usertData} />}
       {(petEditing.edit || petEditing.delete) && (
         <div>
           <label>pet ID</label>
@@ -190,7 +193,7 @@ export default function Admin() {
 
       {petEditing.delete && <button onClick={onDeletePet}>delete</button>}
 
-      {getUser && (
+      {getUser && !petEditing.delete && !petEditing.add && !petEditing.edit && (
         <div>
           <label>user ID</label>
           <input
@@ -200,9 +203,11 @@ export default function Admin() {
         </div>
       )}
 
-      {getUser && <button onClick={onGetUserById}>find user</button>}
+      {getUser && !petEditing.delete && !petEditing.add && !petEditing.edit && (
+        <button onClick={onGetUserById}>find user</button>
+      )}
 
-      {petEditing.add && (
+      {petEditing.add && !petEditing.delete && (
         <form
           className={styles["form"]}
           onSubmit={(e) => {
