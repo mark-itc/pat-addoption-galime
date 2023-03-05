@@ -4,7 +4,7 @@ import "./UserResult.css";
 export default function UserResult(data) {
   if (!(data === undefined || data.data === undefined)) {
     return (
-      <div className="pet_result_container">
+      <div className="user_result_container">
         {data.data.map((userRusult) => (
           <div className="user_container">
             <div className="firstName">firstName: {userRusult.firstName}</div>

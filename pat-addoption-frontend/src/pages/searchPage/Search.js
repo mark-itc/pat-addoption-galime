@@ -10,6 +10,7 @@ export default function Search(props) {
   const [status, setStatus] = useState();
   const [height, setHeight] = useState();
   const [weight, setWeight] = useState();
+  const [name, setName] = useState();
 
   useEffect(() => {
     console.log("data:", data);
@@ -17,13 +18,20 @@ export default function Search(props) {
 
   function getData(e) {
     e.preventDefault();
+    const pet = {
+      ...(type && { type }),
+      ...(status && { status }),
+      ...(height && { height }),
+      ...(weight && { weight }),
+      ...(name && { name }),
+    };
     const config = {
       headers: {
         Authorization: localStorage.getItem("Authorization"),
       },
     };
     axios
-      .get("http://localhost:3010/pet", config)
+      .get("http://localhost:3010/pet", { params: pet }, config)
       .then((res) => {
         console.log("res====>", res);
         setData(res.data.body);
@@ -34,26 +42,6 @@ export default function Search(props) {
 
     setIsAdvanced(false);
   }
-  // function postData() {
-  //   console.log("userName");
-
-  //   var user = {
-  //     userName: "userName",
-  //   };
-  //   const config = {
-  //     headers: {
-  //       Authorization: localStorage.getItem("Authorization"),
-  //     },
-  //   };
-  //   axios
-  //     .post("http://localhost:3010/getData", user, config)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
 
   return (
     <div className={styles["modal-container"]}>
@@ -64,22 +52,69 @@ export default function Search(props) {
             getData(e);
           }}
         >
-          <label>
-            <p> pet type</p>
-            <input type="search" placeholder="all" />
-          </label>
+          {!isAdvanced && (
+            <label>
+              <p> Pet Type</p>
+              <input type="search" placeholder="all" />
+            </label>
+          )}
           {isAdvanced && (
             <div>
               <label>
-                <p>Status</p>
+                <p>Type</p>
                 <input
                   type="search"
                   ON
-                  onChange={(e) => setStatus(e.target.value)}
+                  onChange={(e) => setTyp(e.target.value)}
                 />
               </label>
               <label>
-                <p>Height</p>
+                <p>Name</p>
+                <input
+                  type="search"
+                  ON
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </label>
+              <fieldset>
+                <div className={styles["status"]}>
+                  <legend>STATUS</legend>
+                  <div className={styles["test"]}>
+                    <div className={styles["choise"]}>
+                      <input
+                        type="radio"
+                        id="Adopted"
+                        name="status"
+                        value="ADOPTED"
+                        onChange={(e) => setStatus(e.target.value)}
+                      />
+                      <label htmlFor="Adopted">Adopted</label>
+                    </div>
+                    <div className={styles["choise"]}>
+                      <input
+                        type="radio"
+                        id="Fostered"
+                        name="status"
+                        value="Fostered"
+                        onChange={(e) => setStatus(e.target.value)}
+                      />
+                      <label htmlFor="FOSTERED">Fostered</label>
+                    </div>
+                    <div className={styles["choise"]}>
+                      <input
+                        type="radio"
+                        id="Available"
+                        name="status"
+                        value="AVAILABLE"
+                        onChange={(e) => setStatus(e.target.value)}
+                      />
+                      <label htmlFor="Available">Available</label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <label>
+                <p>Height(+-10 kg)</p>
                 <input
                   type="search"
                   ON
@@ -87,19 +122,11 @@ export default function Search(props) {
                 />
               </label>
               <label>
-                <p>Weight</p>
+                <p>Weight(+-10 kg)</p>
                 <input
                   type="search"
                   ON
                   onChange={(e) => setWeight(e.target.value)}
-                />
-              </label>
-              <label>
-                <p>Type</p>
-                <input
-                  type="search"
-                  ON
-                  onChange={(e) => setTyp(e.target.value)}
                 />
               </label>
             </div>
