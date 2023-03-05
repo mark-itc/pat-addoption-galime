@@ -42,6 +42,42 @@ module.exports.getPetById = async ({ id }) => {
   }
 };
 
+module.exports.getPetByParam = async ({
+  status,
+  type,
+  height,
+  weight,
+  name,
+}) => {
+  try {
+    var query = {};
+
+    if (status) {
+      query.status = status;
+    }
+    if (name) {
+      query.name = name;
+    }
+    if (type) {
+      query.type = type;
+    }
+    if (height) {
+      query.height = { $lte: height + 10, $gte: height - 10 };
+    }
+    if (weight) {
+      query.weight = { $lte: weight + 10, $gte: weight - 10 };
+    }
+    let pet = await Pet.find(query);
+    if (!pet) {
+      throw new Error(consants.petMessage.PET_NOT_FOUND);
+    }
+    return formatMongoDate(pet);
+  } catch (error) {
+    console.log("somthing went wrong! servise: getPetByParam", error);
+    throw new Error(error);
+  }
+};
+
 module.exports.updatePet = async ({ id, updateInfo }) => {
   try {
     checkObjectId(id);

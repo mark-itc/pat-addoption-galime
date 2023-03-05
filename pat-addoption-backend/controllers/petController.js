@@ -46,6 +46,22 @@ module.exports.getPetById = async (req, res) => {
   return res.status(response.status).send(response);
 };
 
+module.exports.getPetByParam = async (req, res) => {
+  let response = { ...consants.defaultServerResonse };
+  try {
+    console.log("req.query =====>", req.query);
+
+    const responseFromService = await petService.getPetByParam(req.query);
+    response.status = 200;
+    response.message = consants.petMessage.PETS_FETCHED;
+    response.body = responseFromService;
+  } catch (error) {
+    console.log("Something went wrong! controller: getPetByParam", error);
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 module.exports.updatePet = async (req, res) => {
   let response = { ...consants.defaultServerResonse };
   try {

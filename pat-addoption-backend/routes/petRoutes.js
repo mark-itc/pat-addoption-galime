@@ -6,10 +6,7 @@ const petSchema = require("../apiSchema/petSchema");
 const tokenValidation = require("../middleware/tokenValidation");
 
 const router = express.Router();
-
-router.get("/", petComtroller.getAllPets);
-
-router.post("/", tokenValidation.validateAdminToken, petComtroller.postPet);
+router.get("/search", petComtroller.getPetByParam);
 
 router.get("/:id", petComtroller.getPetById);
 
@@ -44,6 +41,7 @@ router.post(
 );
 
 router.post("/:id/save", tokenValidation.validateToken, petComtroller.savePet);
+
 router.delete(
   "/:id/save",
   tokenValidation.validateToken,
@@ -51,5 +49,9 @@ router.delete(
 );
 
 router.delete("/:id", petComtroller.deletePet);
+
+router.get("/", petComtroller.getAllPets);
+
+router.post("/", tokenValidation.validateAdminToken, petComtroller.postPet);
 
 module.exports = router;
